@@ -1,8 +1,8 @@
 const API = {
     // url: "https://firtman.github.io/coffeemasters/api/menu.json",
     url: "/data/menu.json",
-    fetchMenu: async () => {
-        const result = await fetch(API.url);
+    fetchMenu: async function () {
+        const result = await fetch(this.url);
         return await result.json();
     }
 }
