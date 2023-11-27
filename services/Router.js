@@ -1,22 +1,23 @@
-const Router = {
-    init: () => {
+class Router {
+    init() {
         document.querySelectorAll("a.navlink").forEach(a => {
             a.addEventListener("click", event => {
                 event.preventDefault();
                 const href = event.target.getAttribute("href");
-                Router.go(href);
+                this.go(href);
             });
         });
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event
         window.addEventListener('popstate', event => {
-            Router.go(event.state.route, false);
+            this.go(event.state.route, false);
         });
 
         // Process initial URL   
-        Router.go(location.pathname);
-    },
-    go: (route, addToHistory = true) => {
+        this.go(location.pathname);
+    }
+
+    go(route, addToHistory = true) {
         console.log(`Going to ${route}`);
 
         if (addToHistory) {
@@ -53,4 +54,4 @@ const Router = {
     }
 }
 
-export default Router;
+export default new Router();
